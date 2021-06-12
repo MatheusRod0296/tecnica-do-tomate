@@ -1,0 +1,41 @@
+.timer {
+  height: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+div h1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 100px auto;
+  font-size: 100px;
+}
+
+.timer div{
+  padding-top: 10px;
+}
+
+.timer div button{
+  margin-left: 10px;
+}
+
+.b-color-red{
+  background-color: rgb(231, 5, 5);
+  color: black;
+}
+
+.b-player{
+  margin-top: 200px;
+  text-align: center;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.b-player .player{
+  transform: scale(4);
+
+}
+
