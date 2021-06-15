@@ -1,13 +1,22 @@
 <div class="timer">
   <div>
-    <button mat-raised-button class="b-color-red">Pomodoro</button>
-    <button mat-raised-button class="b-color-red">Short Break</button>
-    <button mat-raised-button class="b-color-red">Long Break</button>
+    <button mat-raised-button class="b-color-red" (click)="setTime(config.pomodoro)">Pomodoro</button>
+    <button mat-raised-button class="b-color-red" (click)="setTime(config.shortBrak)">Short Break</button>
+    <button mat-raised-button class="b-color-red" (click)="setTime(config.longBreak)">Long Break</button>
   </div>
 
-  <h1>25:00</h1>
+  <h1>{{counter | formatTime}}</h1>
 
-  <button mat-icon-button class="b-player">
-    <mat-icon class="player">play_circle_outline</mat-icon>
+  <ng-container *ngIf="showPlayButton else pauseButton">
+    <button  mat-icon-button class="b-player" (click)="start()">
+      <mat-icon class="player">play_circle_outline</mat-icon>
+    </button>
+  </ng-container>
+
+<ng-template #pauseButton>
+  <button  mat-icon-button class="b-player" (click)="pause()">
+    <mat-icon class="player">pause_circle_outline</mat-icon>
   </button>
+</ng-template>
+
 </div>

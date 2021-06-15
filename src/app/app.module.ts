@@ -9,19 +9,28 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import { TimerComponent } from './timer/timer.component';
 import {MatButtonModule} from '@angular/material/button';
+import { FormatTimePipe } from './pipe/format-time-pipe';
+import { NgxsModule } from '@ngxs/store';
+import { environment } from 'src/environments/environment';
+import { ConfigurationState } from './ngs-store/configuration.state';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolBarComponent,
     TimerComponent,
+    FormatTimePipe
   ],
   imports: [
     BrowserModule,
     NoopAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+
+    NgxsModule.forRoot([ConfigurationState], {
+      developmentMode: !environment.production
+    })
 
   ],
   providers: [],
