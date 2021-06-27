@@ -2,7 +2,6 @@ import { Injectable, OnDestroy } from "@angular/core";
 import { Action, State, StateContext } from "@ngxs/store";
 import { Subscription, timer } from "rxjs";
 import { CounterInterface } from "../interface/counter-interface";
-import { FormatTimePipe } from "../pipe/format-time-pipe";
 
 export class ConfigCounter {
   static readonly type = 'Add Configuration';
@@ -32,7 +31,7 @@ export class CounterState implements OnDestroy{
 
   @Action(ConfigCounter)
   configCounter(ctx: StateContext<CounterInterface>,  action :ConfigCounter) {
-    this.subscription.unsubscribe();
+    this.unsubscribe();
     const state = ctx.getState();
     ctx.setState({
       ...state,
@@ -44,6 +43,11 @@ export class CounterState implements OnDestroy{
   play(ctx: StateContext<CounterInterface>) {
     this.subscription = timer(0, 1000).subscribe(() =>{
       const state = ctx.getState()
+      if(state.value <= 0){
+        this.unsubscribe();
+        return
+      }
+
       ctx.setState({
         ...state,
         value: state.value -1,
@@ -53,10 +57,14 @@ export class CounterState implements OnDestroy{
 
   @Action(Pause)
   pause(ctx: StateContext<CounterInterface>) {
-    this.subscription.unsubscribe();
+    this.unsubscribe();
   }
 
   ngOnDestroy(): void {
+    this.unsubscribe();
+  }
+
+  private unsubscribe(){
     this.subscription.unsubscribe();
   }
 }
