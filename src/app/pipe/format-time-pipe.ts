@@ -1,10 +1,12 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { AsyncPipe } from "@angular/common";
+import { OnDestroy, Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
   name: "formatTime"
 })
 export class FormatTimePipe implements PipeTransform {
-  transform(value: number): string {
+  transform(valueP?: number): string {
+    const value: number = valueP?? 0;
     const minutes: number = Math.floor(value / 60);
     return (
       ("00" + minutes).slice(-2) +

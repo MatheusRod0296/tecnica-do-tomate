@@ -5,7 +5,7 @@
     <button mat-raised-button class="b-color-red" (click)="setTime(config.longBreak)">Long Break</button>
   </div>
 
-  <h1>{{counter | formatTime}}</h1>
+  <h1>{{ (counter$ | async)?.value | formatTime }}</h1>
 
   <ng-container *ngIf="showPlayButton else pauseButton">
     <button  mat-icon-button class="b-player" (click)="start()">

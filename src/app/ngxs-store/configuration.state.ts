@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { ConfigurationInterface } from '../interface/configuration-interface';
-import { AddConfiguration } from './configuration.actions';
+
+export class AddConfiguration {
+  static readonly type = 'Add Configuration';
+  constructor(public config: ConfigurationInterface) {}
+}
 
 @State<ConfigurationInterface>({
   name: 'configuration',
@@ -14,10 +18,13 @@ import { AddConfiguration } from './configuration.actions';
 @Injectable()
 export class ConfigurationState {
   @Action(AddConfiguration)
-  feedAnimals(ctx: StateContext<ConfigurationInterface>) {
+  configurePomodoro(ctx: StateContext<ConfigurationInterface>) {
     const state = ctx.getState();
     ctx.setState({
       ...state,
     });
   }
 }
+
+
+

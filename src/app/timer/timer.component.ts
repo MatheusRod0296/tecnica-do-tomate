@@ -2,7 +2,10 @@ import { Component, OnDestroy } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription, timer } from 'rxjs';
 import { ConfigurationInterface } from '../interface/configuration-interface';
-import { ConfigurationState } from '../ngs-store/configuration.state';
+import { CounterInterface } from '../interface/counter-interface';
+import { ConfigurationState } from '../ngxs-store/configuration.state';
+import { ConfigCounter, Play, CounterState, Pause } from '../ngxs-store/counter.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-timer',
@@ -11,48 +14,36 @@ import { ConfigurationState } from '../ngs-store/configuration.state';
 })
 export class TimerComponent implements OnDestroy {
   @Select(ConfigurationState) configuration$!: Observable<ConfigurationInterface>;
+  @Select(CounterState) counter$!: Observable<CounterInterface>;
 
   subscription: Subscription = new Subscription;
-  countDown: Subscription = new Subscription;
   config!: ConfigurationInterface;
 
-  counter!: number;
-  tick = 1000;
-
   showPlayButton: boolean;
-  constructor() {
+
+  constructor(private store: Store) {
     this.showPlayButton = true;
 
     this.subscription = this.configuration$.subscribe(
       x => {
         this.config = x;
-        this.counter = this.config.pomodoro;
-      },
-      err => console.log('erro')
+      }
     );
-
+    this.setTime( this.config.pomodoro);
   }
 
   start(){
-    this.countDown = timer(0, this.tick).subscribe(() =>{
-      if(this.counter <= 0){
-        this.countDownUnsubscribe();
-        this.showButton();
-        return;
-      }
-      --this.counter
-    } );
+    this.store.dispatch(new Play());
     this.showButton();
   }
 
   pause(){
-    this.countDownUnsubscribe();
+    this.store.dispatch(new Pause());
     this.showButton();
   }
 
   setTime(value:number){
-    this.countDownUnsubscribe();
-    this.counter = value;
+    this.store.dispatch(new ConfigCounter( value));
     this.showButtonPlay()
   }
 
@@ -64,12 +55,7 @@ export class TimerComponent implements OnDestroy {
     this.showPlayButton = true;
   }
 
-  private countDownUnsubscribe(){
-    this.countDown.unsubscribe();
-  }
-
   ngOnDestroy(){
-    this.countDown.unsubscribe();
     this.subscription.unsubscribe();
   }
 

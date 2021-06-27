@@ -12,7 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormatTimePipe } from './pipe/format-time-pipe';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from 'src/environments/environment';
-import { ConfigurationState } from './ngs-store/configuration.state';
+import { CounterState } from './ngxs-store/counter.state';
+import { ConfigurationState } from './ngxs-store/configuration.state';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { ConfigurationState } from './ngs-store/configuration.state';
     MatIconModule,
     MatButtonModule,
 
-    NgxsModule.forRoot([ConfigurationState], {
+    NgxsModule.forRoot([ConfigurationState, CounterState], {
       developmentMode: !environment.production
     })
 
