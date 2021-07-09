@@ -13,6 +13,7 @@ export class AddConfiguration {
     pomodoro: 1500,
     shortBrak: 300,
     longBreak: 900,
+    audio: 'audio1.mp3'
   }
 })
 @Injectable()

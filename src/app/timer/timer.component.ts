@@ -1,11 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { Observable, Subscription, timer } from 'rxjs';
+import { Observable, Subject, Subscription, timer } from 'rxjs';
 import { ConfigurationInterface } from '../interface/configuration-interface';
 import { CounterInterface } from '../interface/counter-interface';
 import { ConfigurationState } from '../ngxs-store/configuration.state';
 import { ConfigCounter, Play, CounterState, Pause } from '../ngxs-store/counter.state';
 import { Store } from '@ngxs/store';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timer',
@@ -16,7 +17,8 @@ export class TimerComponent implements OnDestroy {
   @Select(ConfigurationState) configuration$!: Observable<ConfigurationInterface>;
   @Select(CounterState) counter$!: Observable<CounterInterface>;
 
-  subscription: Subscription = new Subscription;
+  unsubscribeSignal: Subject<void> = new Subject();
+
   config!: ConfigurationInterface;
 
   showPlayButton: boolean;
@@ -24,12 +26,15 @@ export class TimerComponent implements OnDestroy {
   constructor(private store: Store) {
     this.showPlayButton = true;
 
-    this.subscription = this.configuration$.subscribe(
-      x => {
-        this.config = x;
-      }
-    );
-    this.setTime( this.config.pomodoro);
+    this.configuration$
+    .pipe(takeUntil(this.unsubscribeSignal.asObservable()),)
+    .subscribe( x => { this.config = x; } );
+
+    this.counter$
+    .pipe(takeUntil(this.unsubscribeSignal.asObservable()),)
+    .subscribe( x => { this.alarm(x.value) } );
+
+    this.setTime(this.config.pomodoro);
   }
 
   start(){
@@ -43,7 +48,7 @@ export class TimerComponent implements OnDestroy {
   }
 
   setTime(value:number){
-    this.store.dispatch(new ConfigCounter( value));
+    this.store.dispatch(new ConfigCounter(value));
     this.showButtonPlay()
   }
 
@@ -55,12 +60,16 @@ export class TimerComponent implements OnDestroy {
     this.showPlayButton = true;
   }
 
+  private alarm(time:number){
+    if(time <= 0){
+      const alarm = new Audio(`assets/audios/${this.config.audio}`);
+      alarm.play();
+    }
+  }
+
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.unsubscribeSignal.next();
+    this.unsubscribeSignal.unsubscribe();
   }
 
 }
-
-
-
-
