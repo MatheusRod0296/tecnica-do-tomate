@@ -26,6 +26,11 @@ div h1 {
   color: black;
 }
 
+.b-color-black{
+  background-color: black;
+  color: white;
+}
+
 .b-player{
   margin-top: 200px;
   text-align: center;
