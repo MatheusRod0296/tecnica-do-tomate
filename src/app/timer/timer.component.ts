@@ -31,6 +31,7 @@ export class TimerComponent implements OnDestroy {
     .pipe(takeUntil(this.unsubscribeSignal.asObservable()),)
     .subscribe( x => {
       this.config = x;
+
       switch (this.config.currentTimer) {
         case CurrentTimer.ShortBreak:
           this.setTimeAtFirst(this.config.shortBreak,this.config.currentTimer);
@@ -94,5 +95,4 @@ export class TimerComponent implements OnDestroy {
     this.unsubscribeSignal.next();
     this.unsubscribeSignal.unsubscribe();
   }
-
 }

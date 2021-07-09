@@ -42,7 +42,4 @@ export class AppComponent implements OnDestroy{
     this.unsubscribeSignal.next();
     this.unsubscribeSignal.unsubscribe();
   }
-
-
-
 }

@@ -10,12 +10,10 @@ export class ConfigCounter {
 
 export class Play {
   static readonly type = 'play Counter';
-  constructor() {}
 }
 
 export class Pause {
   static readonly type = 'pause Counter';
-  constructor() {}
 }
 
 @State<CounterInterface>({
