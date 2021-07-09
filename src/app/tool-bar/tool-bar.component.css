@@ -2,6 +2,10 @@
   flex: 1 1 auto;
 }
 
+.settings {
+  cursor: pointer;
+}
+
 mat-toolbar {
   background-color: rgb(231, 5, 5);
   color: black;

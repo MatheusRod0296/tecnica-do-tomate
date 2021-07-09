@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Select } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
-import { CounterInterface } from './interface/counter-interface';
+import { CounterInterface } from './ngxs-store/interface/counter-interface';
 import { CounterState } from './ngxs-store/counter.state';
 import { FormatTimePipe } from './pipe/format-time-pipe';
 import { Subject } from 'rxjs';

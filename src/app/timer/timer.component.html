@@ -1,8 +1,8 @@
 <div class="timer">
   <div>
-    <button mat-raised-button class="b-color-red" (click)="setTime(config.pomodoro)">Pomodoro</button>
-    <button mat-raised-button class="b-color-red" (click)="setTime(config.shortBrak)">Short Break</button>
-    <button mat-raised-button class="b-color-red" (click)="setTime(config.longBreak)">Long Break</button>
+    <button mat-raised-button class="b-color-red" (click)="setTime(config.pomodoro, typeToHtml.Pomodoro)">Pomodoro</button>
+    <button mat-raised-button class="b-color-red" (click)="setTime(config.shortBreak, typeToHtml.ShortBreak)">Short Break</button>
+    <button mat-raised-button class="b-color-red" (click)="setTime(config.longBreak, typeToHtml.LongBreak)">Long Break</button>
   </div>
 
   <h1>{{ (counter$ | async)?.value | formatTime }}</h1>

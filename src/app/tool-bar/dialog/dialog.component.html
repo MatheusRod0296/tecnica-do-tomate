@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Settings</h1>
+<span>write your timers in minutes</span>
+<div mat-dialog-content>
+
+  <ul>
+    <li>
+      <mat-form-field>
+        <input matInput type="number" [(ngModel)]="configurationForm.pomodoro" placeholder="Pomodoro">
+      </mat-form-field>
+    </li>
+    <li>
+      <mat-form-field>
+        <input matInput type="number" [(ngModel)]="configurationForm.shortBreak" placeholder="shortBreak">
+      </mat-form-field>
+    </li>
+    <li>
+      <mat-form-field>
+        <input matInput type="number" [(ngModel)]="configurationForm.longBreak" placeholder="longBreak">
+      </mat-form-field>
+    </li>
+  </ul>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+</div>

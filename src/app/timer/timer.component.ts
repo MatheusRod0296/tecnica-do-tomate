@@ -1,12 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { Observable, Subject, Subscription, timer } from 'rxjs';
-import { ConfigurationInterface } from '../interface/configuration-interface';
-import { CounterInterface } from '../interface/counter-interface';
-import { ConfigurationState } from '../ngxs-store/configuration.state';
+import { Observable, Subject} from 'rxjs';
+import { ConfigurationInterface } from '../ngxs-store/interface/configuration-interface';
+import { CounterInterface } from '../ngxs-store/interface/counter-interface';
+import { ConfigurationState, UpdateCurrentTimer } from '../ngxs-store/configuration.state';
 import { ConfigCounter, Play, CounterState, Pause } from '../ngxs-store/counter.state';
 import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
+import { CurrentTimer } from '../enums/type.enum';
 
 @Component({
   selector: 'app-timer',
@@ -18,23 +19,39 @@ export class TimerComponent implements OnDestroy {
   @Select(CounterState) counter$!: Observable<CounterInterface>;
 
   unsubscribeSignal: Subject<void> = new Subject();
-
   config!: ConfigurationInterface;
-
+  counter!: CounterInterface;
   showPlayButton: boolean;
+  typeToHtml = CurrentTimer;
 
   constructor(private store: Store) {
     this.showPlayButton = true;
 
     this.configuration$
     .pipe(takeUntil(this.unsubscribeSignal.asObservable()),)
-    .subscribe( x => { this.config = x; } );
+    .subscribe( x => {
+      this.config = x;
+      switch (this.config.currentTimer) {
+        case CurrentTimer.ShortBreak:
+          this.setTimeAtFirst(this.config.shortBreak,this.config.currentTimer);
+          break;
+        case CurrentTimer.LongBreak:
+          this.setTimeAtFirst(this.config.longBreak, this.config.currentTimer);
+          break;
+
+        default:
+          this.setTimeAtFirst(this.config.pomodoro, this.config.currentTimer);
+          break;
+      }
+    });
 
     this.counter$
     .pipe(takeUntil(this.unsubscribeSignal.asObservable()),)
-    .subscribe( x => { this.alarm(x.value) } );
-
-    this.setTime(this.config.pomodoro);
+    .subscribe( x => {
+      this.counter = x;
+      this.alarm(x.value)
+      }
+    );
   }
 
   start(){
@@ -47,8 +64,14 @@ export class TimerComponent implements OnDestroy {
     this.showButton();
   }
 
-  setTime(value:number){
+  private setTimeAtFirst(value:number, type: CurrentTimer){
     this.store.dispatch(new ConfigCounter(value));
+    this.showButtonPlay()
+  }
+
+  setTime(value:number, type: CurrentTimer){
+    this.store.dispatch(new ConfigCounter(value));
+    this.store.dispatch(new UpdateCurrentTimer(type));
     this.showButtonPlay()
   }
 

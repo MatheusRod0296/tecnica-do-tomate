@@ -1,10 +1,10 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { Action, State, StateContext } from "@ngxs/store";
 import { Subscription, timer } from "rxjs";
-import { CounterInterface } from "../interface/counter-interface";
+import { CounterInterface } from "./interface/counter-interface";
 
 export class ConfigCounter {
-  static readonly type = 'Add Configuration';
+  static readonly type = 'Add counter configuration';
   constructor(public counter: number) {}
 }
 
@@ -48,11 +48,10 @@ export class CounterState implements OnDestroy{
         return
       }
 
-      ctx.setState({
-        ...state,
-        value: state.value -1,
+      ctx.patchState({
+        value: state.value -1
       });
-    } )
+    });
   }
 
   @Action(Pause)
@@ -68,4 +67,3 @@ export class CounterState implements OnDestroy{
     this.subscription.unsubscribe();
   }
 }
-
