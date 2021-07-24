@@ -41,6 +41,15 @@ div h1 {
 
 .b-player .player{
   transform: scale(4);
+}
 
+@media screen and (max-width: 450px){
+  .buttons {
+   display: grid;
+  }
+
+  .buttons button {
+    margin-top: 10px;
+  }
 }
 
