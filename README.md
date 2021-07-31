@@ -1,29 +1,26 @@
-https://stackblitz.com/edit/angular-3fdr3k?file=src%2Fapp%2Fapp.component.ts
+### Tecnica do tomate
 
-# TecnicaDoTomate
+## O que temos no projeto?
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+### Angular 10 
 
-## Development server
+### Ambiente de desenvolvimento
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+ - ubuntu 20.04
+ - VS Code
+ - Node.js 16.4.1 
+ - Angular 12.1.3
 
-## Code scaffolding
+#### Rodando a aplicação localmente
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- verifque se o node esta instalado e qual a versão , utilize o comando: node -v
+    - Caso precise instalar o Node.js, você pode encontra-lo clicando [aqui](https://nodejs.org/en/download/current/)
 
-## Build
+- verifque se o Angular/cli esta instalado e qual a versão , utilize o comando: ng version
+    - Caso precise instalar o Angular/cli,basta utilizar o comando : npm install -g @angular/cli
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- para instalar as dependências do projeto. Utilize o commando: npm install (Lembre-se de estar na raiz do projeto)
 
-## Running unit tests
+- Agora para rodar a aplicação, abra o terminal na raiz do repositório e utilize o comando : ng serve 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- abra o browser de sua preferência e acesse o endereço : [http://localhost:4200](http://localhost:4200)
