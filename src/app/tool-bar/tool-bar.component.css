@@ -10,3 +10,18 @@ mat-toolbar {
   background-color: rgb(231, 5, 5);
   color: black;
 }
+
+.img-link-github {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.img-link-github img {
+  width: 45px;
+  height: 45px;
+}
