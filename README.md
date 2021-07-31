@@ -1,8 +1,8 @@
 ### Tecnica do tomate
 
-## O que temos no projeto?
+O projeto se trata de um Pomodoro virtual cuidando da execução de tempo pré definidos, quem tem como meta o foco em uma determinada tarefa pelo tempo x, ao final de cada tempo é tocado um alerme para avisar que o tempo finalizou e entao ele pode iniciar uma pausa. 
 
-### Angular 10 
+[mais informações sobre a técnica de pomodoro](https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro)
 
 ### Ambiente de desenvolvimento
 
@@ -10,6 +10,11 @@
  - VS Code
  - Node.js 16.4.1 
  - Angular 12.1.3
+ - Ngxs  
+
+### Acesse a aplicação
+
+[https://pomodoro-project.herokuapp.com/](https://pomodoro-project.herokuapp.com/)
 
 #### Rodando a aplicação localmente
 
