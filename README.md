@@ -10,6 +10,7 @@ O projeto se trata de um Pomodoro virtual cuidando da execução de tempo pré d
  - VS Code
  - Node.js 16.4.1 
  - Angular 12.1.3
+ - Angular Material
  - Ngxs  
 
 ### Acesse a aplicação
