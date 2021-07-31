@@ -1,8 +1,11 @@
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://pomodoro-project.herokuapp.com/)
+
 ### Tecnica do tomate
 
 O projeto se trata de um Pomodoro virtual cuidando da execução de tempo pré definidos, quem tem como meta o foco em uma determinada tarefa pelo tempo x, ao final de cada tempo é tocado um alerme para avisar que o tempo finalizou e entao ele pode iniciar uma pausa. 
 
 [mais informações sobre a técnica de pomodoro](https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro)
+
 
 ### Ambiente de desenvolvimento
 
@@ -12,10 +15,6 @@ O projeto se trata de um Pomodoro virtual cuidando da execução de tempo pré d
  - Angular 12.1.3
  - Angular Material
  - Ngxs  
-
-### Acesse a aplicação
-
-[https://pomodoro-project.herokuapp.com/](https://pomodoro-project.herokuapp.com/)
 
 #### Rodando a aplicação localmente
 
