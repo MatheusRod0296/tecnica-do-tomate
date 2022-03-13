@@ -1,6 +1,6 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://pomodoro-project.herokuapp.com/)
 
-![image](https://user-images.githubusercontent.com/25780610/158077123-3628227a-4914-4a35-a26f-a518caa8b168.png)
+![image](https://user-images.githubusercontent.com/25780610/158077192-31a381cd-ae37-4727-8535-01579af7ab63.png)
 
 
 ### Tecnica do tomate
