@@ -1,5 +1,8 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://pomodoro-project.herokuapp.com/)
 
+![image](https://user-images.githubusercontent.com/25780610/158077123-3628227a-4914-4a35-a26f-a518caa8b168.png)
+
+
 ### Tecnica do tomate
 
 O projeto se trata de um Pomodoro virtual cuidando da execução de tempo pré definidos, quem tem como meta o foco em uma determinada tarefa pelo tempo x, ao final de cada tempo é tocado um alerme para avisar que o tempo finalizou e entao ele pode iniciar uma pausa. 
